@@ -2,8 +2,7 @@ import os
 from flask import Flask, flash, request, redirect, render_template
 from werkzeug.utils import secure_filename
 from readFile import read_file
-from tsummarizer import summarizer
-
+from tsummarizer import nltk_summarizer
 app=Flask(__name__)
 
 app.secret_key = "secret key"
@@ -19,7 +18,7 @@ if not os.path.isdir(UPLOAD_FOLDER):
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'csv','pdf'])
 
 
 def allowed_file(filename):
@@ -44,15 +43,16 @@ def upload_file():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            saved_img_path = file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('File successfully uploaded')
-            img_text = read_file(image_path=saved_img_path)
-            text_summary = summarizer(text = img_text)
-            return text_summary
-
-            #return redirect('/')
+            text=read_file(os.path.join(UPLOAD_FOLDER,filename),filename)
+            print(text)
+            sum_text=nltk_summarizer(text)
+            print('This is summarized text: ')
+            print(sum_text)
+            return sum_text
         else:
-            flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+            flash('Allowed file types are txt, pdf, png, jpg, jpeg, csv, pdf')
             return redirect(request.url)
 
 
