@@ -7,3 +7,5 @@ scipy==1.7.3
 spacy==3.2.1
 Werkzeug==2.0.2
 wrapt==1.10.11
+pytesseract
+pillow
