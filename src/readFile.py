@@ -1,8 +1,11 @@
 from PIL import Image
 from pytesseract import pytesseract
-def read_file(image_path:String):
+
+
+def read_file(image_path):
     #Define path to tessaract.exe
-    path_to_tesseract = r'C:/Users/manvithakankata/AppData/Local/Tesseract-OCR/tesseract.exe'
+    print(image_path)
+    path_to_tesseract = r'src/Tesseract-OCR/tesseract.exe'
     #Define path to image
     #path_to_image = 'C:/Users/manvithakankata/Downloads/text_summarizer/image2.jpg'
     #Point tessaract_cmd to tessaract.exe
@@ -12,3 +15,5 @@ def read_file(image_path:String):
     #Extract text from image
     text = pytesseract.image_to_string(img)
     return text
+
+
