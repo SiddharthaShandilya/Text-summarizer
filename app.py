@@ -33,6 +33,7 @@ def upload_form():
 @app.route('/', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
+        return 'this is ci/cd pipeline'
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -46,9 +47,9 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash('File successfully uploaded')
             text=read_file(os.path.join(UPLOAD_FOLDER,filename),filename)
-            print(text)
+            #print(text)
             sum_text=nltk_summarizer(text)
-            print('This is summarized text: ')
+            #print('This is summarized text: ')
             print(sum_text)
             return sum_text
         else:
