@@ -5,8 +5,8 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 import heapq  
 
 
-nltk.download('punkt')
-nltk.download('stopwords')
+#nltk.download('punkt')
+#nltk.download('stopwords')
 
 
 def nltk_summarizer(raw_text):
