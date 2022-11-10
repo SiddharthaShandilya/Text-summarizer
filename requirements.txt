@@ -2,3 +2,5 @@ flask
 transformers
 gunicorn
 pytesseract
+
+-e .
