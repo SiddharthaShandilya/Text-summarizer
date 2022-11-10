@@ -2,4 +2,7 @@ env/
 __pycache__/
 *.pyc
 *.jpg
-src/tesseract/
+*.png
+src/Tesseract-OCR/
+src.egg-info/
+!uploads/Screenshot 2022-11-10 085057.png
