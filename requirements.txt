@@ -10,3 +10,5 @@ wrapt==1.10.11
 pytesseract
 pillow
 PyPDF2
+torch
+transformers
