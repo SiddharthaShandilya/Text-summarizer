@@ -1,6 +1,11 @@
-flask
-transformers
-gunicorn
+beautifulsoup4==4.10.0
+Flask==1.0.2
+lxml==4.6.4
+nltk==3.4
+numpy==1.21.4
+scipy==1.7.3
+spacy==3.2.1
+Werkzeug==2.0.2
+wrapt==1.10.11
 pytesseract
-
--e .
+pillow
