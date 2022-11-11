@@ -8,6 +8,12 @@ model = AutoModelForImageClassification.from_pretrained("microsoft/dit-base-fine
 IMG_PATH = "uploads/inv3.jpg"
 
 def doc_layout(img_path):
+    '''
+    This function take path of document_image as input and predicts the document types
+    INPUT :  String
+    Output : String
+
+    '''
     
     path_to_image = img_path
     #Open image with PIL
