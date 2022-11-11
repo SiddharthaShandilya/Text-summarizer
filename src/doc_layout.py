@@ -2,12 +2,15 @@ from transformers import AutoFeatureExtractor, AutoModelForImageClassification
 from PIL import Image
 import torch
 
-
-
 IMG_PATH = "uploads\download.jpg"
 
-def doc_layout(img_path,feature_extractor,model):
-    
+def doc_layout(img_path):
+    '''
+    This function take path of document_image as input and predicts the document types
+    INPUT :  String
+    Output : String
+
+    '''
     path_to_image = img_path
     #Open image with PIL
     image = Image.open(path_to_image).convert("RGB")
