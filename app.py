@@ -54,13 +54,15 @@ def upload_file():
             img_path = os.path.join(UPLOAD_FOLDER,filename)
             layout = doc_layout(img_path)
             # converting the image uploaded to text
-            text=read_file(img_path,filename)
+            extracted_text=read_file(img_path,filename)
             #print(text)
-            sum_text=nltk_summarizer(text)
+            sum_text=nltk_summarizer(extracted_text)
             
-            img_analysis = {"layout": layout, "Extracted_text": text, "Summarized_text": sum_text}
+            #img_analysis = {"layout": layout, "Extracted_text": extracted_text, "Summarized_text": sum_text}
+            #img_analysis = [layout, extracted_text, sum_text]
+            out_text = f" -> doc_type : [{layout}] \n\n extracted text \n\t -> [{extracted_text}]\n\n summarized text \n\t-> [{sum_text}]"
 
-            return layout
+            return out_text
         else:
             flash('Allowed file types are txt, pdf, png, jpg, jpeg, csv, pdf')
             return redirect(request.url)
