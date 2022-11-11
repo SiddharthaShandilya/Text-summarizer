@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 *.jpg
 *.png
+*.pt
 src/Tesseract-OCR/
 src.egg-info/
 !uploads/Screenshot 2022-11-10 085057.png

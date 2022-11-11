@@ -2,10 +2,7 @@ from transformers import AutoFeatureExtractor, AutoModelForImageClassification
 from PIL import Image
 import torch
 
-feature_extractor = AutoFeatureExtractor.from_pretrained("microsoft/dit-base-finetuned-rvlcdip")
-model = AutoModelForImageClassification.from_pretrained("microsoft/dit-base-finetuned-rvlcdip")
-
-IMG_PATH = "uploads/inv3.jpg"
+IMG_PATH = "uploads\download.jpg"
 
 def doc_layout(img_path):
     '''
@@ -14,7 +11,6 @@ def doc_layout(img_path):
     Output : String
 
     '''
-    
     path_to_image = img_path
     #Open image with PIL
     image = Image.open(path_to_image).convert("RGB")
@@ -32,4 +28,17 @@ def doc_layout(img_path):
     return model.config.id2label[predicted_class_idx]
 
 if __name__ == "__main__":
-    doc_layout(img_path=IMG_PATH)
+    try:
+        feature_extractor = torch.load("artifacts/pre-trained-models/dit-base-feature_extractor-rvlcdip.pt")
+        model = torch.load("artifacts/pre-trained-models/dit-base-model-rvlcdip.pt")
+        print("model loaded successfully from local storage")
+    except:
+        feature_extractor = AutoFeatureExtractor.from_pretrained("microsoft/dit-base-finetuned-rvlcdip")
+        torch.save(feature_extractor,"artifacts/pre-trained-models/dit-base-feature_extractor-rvlcdip.pt")
+
+        model = AutoModelForImageClassification.from_pretrained("microsoft/dit-base-finetuned-rvlcdip")
+        torch.save(model,"artifacts/pre-trained-models/dit-base-model-rvlcdip.pt")
+
+        print("model loaded successfully from huggingface and saved to local storage")
+    finally:
+        doc_layout(IMG_PATH, feature_extractor, model)
