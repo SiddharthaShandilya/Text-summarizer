@@ -14,9 +14,9 @@ def doc_layout(IMG_PATH):
     '''
     try:
 
-        feature_extractor = torch.load("artifacts/pre-trained-models/dit-base-feature_extractor-rvlcdip.pt")
-        model = torch.load("artifacts/pre-trained-models/dit-base-model-rvlcdip.pt")
-        print("model loaded successfully from local storage")
+        feature_extractor = torch.load("artifacts/pre-trained-models/doc_layout/dit-base-feature_extractor-rvlcdip.pt")
+        model = torch.load("artifacts/pre-trained-models/doc_layout/dit-base-model-rvlcdip.pt")
+        print("feature_extractor_model loaded successfully from local storage")
         
     except:
         os.makedirs("artifacts/pre-trained-models/doc_layout", exist_ok=True)
@@ -26,7 +26,7 @@ def doc_layout(IMG_PATH):
 
         torch.save(feature_extractor,"artifacts/pre-trained-models/doc_layout/dit-base-feature_extractor-rvlcdip.pt")
         torch.save(model,"artifacts/pre-trained-models/doc_layout/dit-base-model-rvlcdip.pt")
-        print("model loaded successfully from huggingface and saved to local storage")
+        print("feature_extractor_model loaded successfully from huggingface and saved to local storage")
 
     path_to_image = IMG_PATH
     #Open image with PIL
