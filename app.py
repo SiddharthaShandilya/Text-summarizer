@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from src.readFile import read_file
 from src.tsummarizer import nltk_summarizer
 from src.doc_layout import doc_layout
-
+from src.ner_bert import ner_using_bert
 
 app=Flask(__name__)
 
@@ -57,10 +57,11 @@ def upload_file():
             extracted_text=read_file(img_path,filename)
             #print(text)
             sum_text=nltk_summarizer(extracted_text)
+            named_entity_recognition_text = ner_using_bert(extracted_text)
             
             #img_analysis = {"layout": layout, "Extracted_text": extracted_text, "Summarized_text": sum_text}
             #img_analysis = [layout, extracted_text, sum_text]
-            out_text = f" -> doc_type : [{layout}] \n\n extracted text \n\t -> [{extracted_text}]\n\n summarized text \n\t-> [{sum_text}]"
+            out_text = f" -> doc_type : [{layout}] +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \n\n extracted text \n\t -> [{extracted_text}]+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n summarized text \n\t-> [{sum_text}] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++named entity recognition :-> {named_entity_recognition_text} "
 
             return out_text
         else:
