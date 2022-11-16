@@ -4,7 +4,7 @@ import PyPDF2
 
 def read_file(path,filename):
     #Define path to tessaract.exe
-    path_to_tesseract = r'C:/Users/manvithakankata/AppData/Local/Tesseract-OCR/tesseract.exe'
+    path_to_tesseract = r'src/Tesseract-OCR/tesseract.exe' # here put the name of tesseract ocr files
     extension=filename.rsplit('.', 1)[1].lower()
     if extension in ('jpg','jpeg','png'):
         #Define path to image
@@ -28,4 +28,7 @@ def read_file(path,filename):
         fileObj=open(path,'r')
         return fileObj.read()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b720957280014574aad85c5c05e90265d17ef3d7
