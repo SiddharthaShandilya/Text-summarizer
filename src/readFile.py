@@ -8,6 +8,7 @@ from pytesseract import pytesseract
 import PyPDF2
 import cv2
 from src.information_extraction.text_marking import mark_region
+from src.doc_layout import doc_layout
 
 
 
@@ -23,12 +24,17 @@ def read_file(path,filename):
         pytesseract.tesseract_cmd = path_to_tesseract
         #Open image with PIL
         uploaded_img = Image.open(path_to_image)
-        try:
-            marked_img, line_items_coordinates = mark_region(path_to_image)
-            #Extract text from image
-            text = mark_region(marked_img, line_items_coordinates)
-            
-        except:
+        
+        if doc_layout(path_to_image)== 'invoice':
+            print("INVOICE DETECTED")
+            try:
+                marked_img, line_items_coordinates = mark_region(path_to_image)
+                #Extract text from image
+                text = mark_region(marked_img, line_items_coordinates)
+                
+            except:
+                text = pytesseract.image_to_string(uploaded_img)
+        else:
             text = pytesseract.image_to_string(uploaded_img)
         return text
 
