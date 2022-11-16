@@ -24,13 +24,13 @@ def marked_image_text(uploaded_img,line_items_coordinates ):
         c = line_items_coordinates[x]
         # cropping image img = image[y0:y1, x0:x1]
         img = uploaded_img[c[0][1]:c[1][1], c[0][0]:c[1][0]]            
-        cv2.imshow("lined",img)
+        #cv2.imshow("lined",img)
         # convert the image to black and white for better OCR
         ret,thresh1 = cv2.threshold(img,120,255,cv2.THRESH_BINARY)
 
         # pytesseract image to string to get results
         text = str(pytesseract.image_to_string(thresh1, config='--psm 6'))
-        print( text)
+        #print( text)
         TEXT_LIST.append(text)
     
     return TEXT_LIST
@@ -68,7 +68,8 @@ def mark_region(image_path=IMG_PATH):
             
     print(line_items_coordinates)
     text = marked_image_text(image, line_items_coordinates)
-    print(f"marked text :{text}")
+    cv2.imwrite("artifacts/cropped_image/marked_image.jpg", image)
+    #print(f"marked text :{text}")
     return text
 
 
