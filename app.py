@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
 from flask import Flask,flash,render_template,url_for,request,redirect
-from readFile import read_file
 import os
 from werkzeug.utils import secure_filename
 
-from spacy_summarization import text_summarizer
-from nltk_summarization import nltk_summarizer
+from src.readFile import read_file
+from src.summarization.spacy_summarization import text_summarizer
+from src.summarization.nltk_summarization import nltk_summarizer
 import time
 import spacy
 nlp = spacy.load("en_core_web_sm")
